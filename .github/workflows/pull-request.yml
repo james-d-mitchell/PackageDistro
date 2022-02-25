@@ -84,7 +84,7 @@ jobs:
       matrix: ${{ fromJSON(needs.detect-changes.outputs.update-matrix) }}
     steps:
       - uses: actions/checkout@v2
-        with: 
+        with:
           fetch-depth: '2'
 
       - name: "Install package distribution tools"
@@ -111,11 +111,23 @@ jobs:
 
       - name: "Install and build package"
         run: |
-            echo "TODO: we also need all dependencies to be compiled -- perhaps can (ab)use PackageManager?"
+          _tools/download_dependencies.py ${{ matrix.package }}
+          BuildPackagesOptions="--strict"
+          cd _unpacked_archives
+          for file in * ; do
+            ln -s "$file" "/home/runner/gap/pkg/$file"
+          done
+          cd /home/runner/gap/pkg
+          for pkg in ${{TODO contents of _unpacked_archives; do
+              ../bin/BuildPackages.sh ${BuildPackagesOptions} $pkg*
+          done
 
       - name: "Run package tests with default packages"
         run: |
-            echo "TODO: use TestPackage"
+            ln -s /home/runner/gap/bin/gap.sh /usr/local/bin/gap
+            for pkg in ${{ matrix.package }}; do
+                echo "TestPackage(\"$pkg\");" | gap
+            done
 
       - name: "Run package tests with minimal packages"
         run: |
