@@ -294,5 +294,5 @@
   "Status": "deposited",
   "Subtitle": "Graphs, digraphs, and multidigraphs in GAP",
   "TestFile": "tst/teststandard.g",
-  "Version": "1.5.0"
+  "Version": "1.4.0"
 }
