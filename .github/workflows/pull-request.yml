@@ -118,8 +118,8 @@ jobs:
             ln -s "$file" "/home/runner/gap/pkg/$file"
           done
           cd /home/runner/gap/pkg
-          for pkg in ${{TODO contents of _unpacked_archives; do
-              ../bin/BuildPackages.sh ${BuildPackagesOptions} $pkg*
+          for pkg in * ; do
+              ../bin/BuildPackages.sh "$BuildPackagesOptions" $pkg*
           done
 
       - name: "Run package tests with default packages"
